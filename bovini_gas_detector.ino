@@ -17,6 +17,7 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+  pinMode(Sensor_input, INPUT);
   pinMode(BUZZER, OUTPUT);
 }
 
@@ -101,8 +102,8 @@ void loop() {
   Serial.print("Gas state: ");
   Serial.println(sensor_Aout);
   char light[8];
-  dtostrf(sensor_Aout, 1, 2, light);
-  client.publish("dustbin/gassensor", light);
+  dtostrf(sensor_Aout, 1, 2, gas);
+  client.publish("dustbin/gassensor", gas);
 
   delay(1000);                 //DELAY of 1 sec/
 }
